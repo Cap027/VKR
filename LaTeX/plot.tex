@@ -1,0 +1,33 @@
+\documentclass{standalone}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+% all other packages and stuff you need for the picture
+
+\begin{document}
+	\begin{tikzpicture}
+		\begin{axis}[xlabel={$y,~м$},ylabel={$u_y,~ мм/с$}, grid=both, scale=1.5, legend pos = north west] \newline
+			\addplot [black] table[x index=0,y index=3,col sep=semicolon] {data.csv};
+			\addlegendentry {$q = 100~Вт/м^2$};
+			\addplot [blue] table[x index=0,y index=2,col sep=semicolon] {data.csv};
+			\addlegendentry {$q = 10~Вт/м^2$};
+			\addplot [red] table[x index=0,y index=1,col sep=semicolon] {data.csv};
+			\addlegendentry {$q = 1~Вт/м^2$}; 
+		\end{axis}
+	\end{tikzpicture}
+	
+\end{document}
